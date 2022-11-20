@@ -2,6 +2,7 @@ package bridge.view;
 
 import bridge.Result;
 import bridge.type.OutputFormatType;
+import bridge.type.TextType;
 
 import java.util.List;
 
@@ -13,14 +14,19 @@ import static bridge.type.SpaceType.UP;
  */
 public class OutputView {
 
+    private static final char NEWLINE_CHARACTER = '\n';
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(List<Result> results) {
-        System.out.println(makeSpaceMap(UP.getSpace(), results));
-        System.out.println(makeSpaceMap(DOWN.getSpace(), results));
+    public String printMap(List<Result> results) {
+        StringBuilder map = new StringBuilder();
+        map.append(makeSpaceMap(UP.getSpace(), results)).append(NEWLINE_CHARACTER);
+        map.append(makeSpaceMap(DOWN.getSpace(), results)).append(NEWLINE_CHARACTER);
+
+        return map.toString();
     }
 
     private String makeSpaceMap(String spaceType, List<Result> results) {
@@ -42,6 +48,13 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult() {
+    public void printResult(String gameResultType, int totalTryCount, List<Result> results) {
+        StringBuilder result = new StringBuilder();
+        result.append(TextType.GAME_END.getText()).append(NEWLINE_CHARACTER);
+        result.append(printMap(results)).append(NEWLINE_CHARACTER);
+        result.append(TextType.GAME_SUCCESS_OR_NOT.getText()).append(gameResultType).append(NEWLINE_CHARACTER);
+        result.append(TextType.TOTAL_TRY_COUNT.getText()).append(totalTryCount);
+
+        System.out.println(result);
     }
 }

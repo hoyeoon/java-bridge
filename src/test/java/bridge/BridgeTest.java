@@ -35,6 +35,14 @@ public class BridgeTest {
 
         List<Result> results = Arrays.asList(new Result("O", "U"), new Result("X", "U"));
         OutputView outputView = new OutputView();
-        outputView.printMap(results);
+        System.out.println(outputView.printMap(results));
+    }
+
+    @Test
+    public void 결과_출력_테스트() {
+
+        List<Result> results = Arrays.asList(new Result("O", "U"), new Result("X", "U"));
+        OutputView outputView = new OutputView();
+        outputView.printResult("실패", 1, results);
     }
 }
