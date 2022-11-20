@@ -1,6 +1,6 @@
 package bridge.type;
 
-public enum TextType {
+public enum MessageType {
     GAME_START("다리 건너기 게임을 시작합니다."),
     BRIDGE_LENGTH_INPUT("다리의 길이를 입력해주세요."),
     MOVE_SPACE_INPUT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
@@ -11,7 +11,7 @@ public enum TextType {
 
     private final String text;
 
-    TextType(String text) {
+    MessageType(String text) {
         this.text = text;
     }
 

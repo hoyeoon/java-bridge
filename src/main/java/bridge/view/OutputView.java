@@ -2,7 +2,7 @@ package bridge.view;
 
 import bridge.Result;
 import bridge.type.OutputFormatType;
-import bridge.type.TextType;
+import bridge.type.MessageType;
 
 import java.util.List;
 
@@ -50,11 +50,12 @@ public class OutputView {
      */
     public void printResult(String gameResultType, int totalTryCount, List<Result> results) {
         StringBuilder result = new StringBuilder();
-        result.append(TextType.GAME_END.getText()).append(NEWLINE_CHARACTER);
+        result.append(MessageType.GAME_END.getText()).append(NEWLINE_CHARACTER);
         result.append(printMap(results)).append(NEWLINE_CHARACTER);
-        result.append(TextType.GAME_SUCCESS_OR_NOT.getText()).append(gameResultType).append(NEWLINE_CHARACTER);
-        result.append(TextType.TOTAL_TRY_COUNT.getText()).append(totalTryCount);
+        result.append(MessageType.GAME_SUCCESS_OR_NOT.getText()).append(gameResultType).append(NEWLINE_CHARACTER);
+        result.append(MessageType.TOTAL_TRY_COUNT.getText()).append(totalTryCount);
 
         System.out.println(result);
     }
+
 }
