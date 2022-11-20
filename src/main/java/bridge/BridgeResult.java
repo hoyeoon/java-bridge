@@ -3,8 +3,8 @@ package bridge;
 import java.util.ArrayList;
 import java.util.List;
 
-import static bridge.type.ResultType.FAILURE;
-import static bridge.type.ResultType.SUCCESS;
+import static bridge.type.BridgeResultType.FAILURE;
+import static bridge.type.BridgeResultType.SUCCESS;
 
 public class BridgeResult {
 

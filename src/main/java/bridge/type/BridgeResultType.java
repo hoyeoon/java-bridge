@@ -1,12 +1,12 @@
 package bridge.type;
 
-public enum ResultType {
+public enum BridgeResultType {
     SUCCESS("O"),
     FAILURE("X");
 
     private final String result;
 
-    ResultType(String result) {
+    BridgeResultType(String result) {
         this.result = result;
     }
 
