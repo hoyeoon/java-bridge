@@ -35,7 +35,7 @@ public class BridgeTest {
 
         List<Result> results = Arrays.asList(new Result("O", "U"), new Result("X", "U"));
         OutputView outputView = new OutputView();
-        System.out.println(outputView.printMap(results));
+        outputView.printMap(results);
     }
 
     @Test
