@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.view.OutputView;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -23,5 +24,17 @@ public class BridgeTest {
         List<Result> results = bridgeResult.makeResult(bridgeShape, movedSpaces);
         assertThat(results.size()).isEqualTo(2);
         assertThat(results.get(1).getResult()).isEqualTo("X");
+
+        for(Result result : results) {
+            System.out.println(result.getResult() + ", " + result.getMovedSpace());
+        }
+    }
+
+    @Test
+    public void 다리건너기_출력_테스트() {
+
+        List<Result> results = Arrays.asList(new Result("O", "U"), new Result("X", "U"));
+        OutputView outputView = new OutputView();
+        outputView.printMap(results);
     }
 }
