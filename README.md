@@ -6,4 +6,4 @@
 - [x] 이동할 칸(U, D)를 입력 받는다. - InputView#readMoving
 - [x] 다리 건너기 결과를 보여준다. - OutputView#printMap
 - [x] 게임을 다시 시도할지 여부(R, Q)를 입력 받는다. - InputView#readGameCommand
-- [] 게임 결과를 보여준다. - OutputView#printResult
+- [x] 게임 결과를 보여준다. - OutputView#printResult
