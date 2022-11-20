@@ -9,13 +9,13 @@ public enum MessageType {
     GAME_SUCCESS_OR_NOT("게임 성공 여부: "),
     TOTAL_TRY_COUNT("총 시도한 횟수: ");
 
-    private final String text;
+    private final String message;
 
-    MessageType(String text) {
-        this.text = text;
+    MessageType(String message) {
+        this.message = message;
     }
 
     public String getText() {
-        return text;
+        return message;
     }
 }
