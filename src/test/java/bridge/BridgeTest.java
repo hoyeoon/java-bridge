@@ -34,9 +34,8 @@ public class BridgeTest {
     public void 다리건너기_출력_테스트() {
 
         List<Result> results = Arrays.asList(new Result("O", "U"), new Result("X", "U"));
-        BridgeGame bridgeGame = new BridgeGame(results);
         OutputView outputView = new OutputView();
-        outputView.printMap(bridgeGame);
+        outputView.printMap(results);
     }
 
     @Test

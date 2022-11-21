@@ -74,7 +74,7 @@ public class Application {
         outputView.printMovingSpaceInputMessage();
         movedSpaces.add(inputView.readMoving());
         List<Result> results = new BridgeResult().makeResult(bridgeShape, movedSpaces);
-        outputView.printMap(new BridgeGame(results));
+        outputView.printMap(results);
 
         return results;
     }

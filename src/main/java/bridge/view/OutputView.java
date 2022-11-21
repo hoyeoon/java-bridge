@@ -1,10 +1,13 @@
 package bridge.view;
 
-import bridge.BridgeGame;
 import bridge.Result;
 import bridge.type.MessageType;
+import bridge.type.OutputFormatType;
 
 import java.util.List;
+
+import static bridge.type.MoveType.DOWN;
+import static bridge.type.MoveType.UP;
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -18,8 +21,26 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printMap(BridgeGame bridgeGame) {
-        System.out.println(bridgeGame.move());
+    public String printMap(List<Result> results) {
+        StringBuilder map = new StringBuilder();
+        map.append(makeSpaceMap(UP.getMove(), results)).append(NEWLINE_CHARACTER);
+        map.append(makeSpaceMap(DOWN.getMove(), results)).append(NEWLINE_CHARACTER);
+        System.out.println(map);
+
+        return map.toString();
+    }
+
+    private String makeSpaceMap(String spaceType, List<Result> results) {
+        StringBuilder spaceMap = new StringBuilder(OutputFormatType.START_BRACKET.getOutputFormat());
+        for(Result result : results) {
+            if(!spaceType.equals(result.getMovedSpace())) {
+                spaceMap.append(OutputFormatType.SPACE.getOutputFormat()).append(OutputFormatType.SEPARATOR.getOutputFormat());
+                continue;
+            }
+            spaceMap.append(result.getResult()).append(OutputFormatType.SEPARATOR.getOutputFormat());
+        }
+        spaceMap.replace(spaceMap.length() - 3, spaceMap.length(), "");
+        return spaceMap.append(OutputFormatType.END_BRACKET.getOutputFormat()).toString();
     }
 
     /**
@@ -28,8 +49,13 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public void printResult(String gameResultType, int totalTryCount, List<Result> results) {
-        BridgeGame bridgeGame = new BridgeGame(results);
+        StringBuilder result = new StringBuilder();
+        result.append(MessageType.GAME_END.getMessage()).append(NEWLINE_CHARACTER);
+        result.append(printMap(results)).append(NEWLINE_CHARACTER);
+        result.append(MessageType.GAME_SUCCESS_OR_NOT.getMessage()).append(gameResultType).append(NEWLINE_CHARACTER);
+        result.append(MessageType.TOTAL_TRY_COUNT.getMessage()).append(totalTryCount);
 
+        System.out.println(result);
     }
 
     public void printGameStartMessage() {
@@ -48,4 +74,5 @@ public class OutputView {
     public void printGameRetryInputMessage() {
         System.out.println(MessageType.GAME_COMMAND_INPUT.getMessage());
     }
+
 }
