@@ -44,4 +44,8 @@ public class OutputView {
     public void printMovingSpaceInputMessage() {
         System.out.println(MessageType.MOVE_SPACE_INPUT.getMessage());
     }
+
+    public void printGameRetryInputMessage() {
+        System.out.println(MessageType.GAME_COMMAND_INPUT.getMessage());
+    }
 }
