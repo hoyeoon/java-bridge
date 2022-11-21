@@ -62,12 +62,12 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String gameResultType, int totalTryCount, List<Result> results) {
+    public void printResult(String gameResultType, int totalGameCount, List<Result> results) {
         StringBuilder result = new StringBuilder();
         result.append(MessageType.GAME_END.getMessage()).append(NEWLINE_CHARACTER);
         result.append(printMap(results)).append(NEWLINE_CHARACTER);
         result.append(MessageType.GAME_SUCCESS_OR_NOT.getMessage()).append(gameResultType).append(NEWLINE_CHARACTER);
-        result.append(MessageType.TOTAL_TRY_COUNT.getMessage()).append(totalTryCount);
+        result.append(MessageType.TOTAL_TRY_COUNT.getMessage()).append(totalGameCount);
 
         System.out.println(result);
     }
