@@ -20,8 +20,8 @@ public class BridgeTest {
         List<String> movedSpaces = Arrays.asList("U", "U", "U");
 
         // then
-        BridgeResult bridgeResult = new BridgeResult();
-        List<Result> results = bridgeResult.makeResult(bridgeShape, movedSpaces);
+        BridgeGame bridgeGame = new BridgeGame();
+        List<Result> results = bridgeGame.move(bridgeShape, movedSpaces);
         assertThat(results.size()).isEqualTo(2);
         assertThat(results.get(1).getResult()).isEqualTo("X");
 

@@ -30,17 +30,31 @@ public class OutputView {
         return map.toString();
     }
 
-    private String makeSpaceMap(String spaceType, List<Result> results) {
-        StringBuilder spaceMap = new StringBuilder(OutputFormatType.START_BRACKET.getOutputFormat());
+    private String makeSpaceMap(String moveType, List<Result> results) {
+        StringBuilder spaceMap = new StringBuilder();
+        spaceMap.append(OutputFormatType.START_BRACKET.getOutputFormat());
+
         for(Result result : results) {
-            if(!spaceType.equals(result.getMovedSpace())) {
-                spaceMap.append(OutputFormatType.SPACE.getOutputFormat()).append(OutputFormatType.SEPARATOR.getOutputFormat());
-                continue;
-            }
-            spaceMap.append(result.getResult()).append(OutputFormatType.SEPARATOR.getOutputFormat());
+            makeSpace(moveType, spaceMap, result);
         }
+        removeLastSeparator(spaceMap);
+        spaceMap.append(OutputFormatType.END_BRACKET.getOutputFormat());
+
+        return spaceMap.toString();
+    }
+
+    private void makeSpace(String moveType, StringBuilder spaceMap, Result result) {
+        if(!moveType.equals(result.getMovedSpace())) {
+            spaceMap.append(OutputFormatType.SPACE.getOutputFormat());
+            spaceMap.append(OutputFormatType.SEPARATOR.getOutputFormat());
+            return;
+        }
+        spaceMap.append(result.getResult());
+        spaceMap.append(OutputFormatType.SEPARATOR.getOutputFormat());
+    }
+
+    private void removeLastSeparator(StringBuilder spaceMap) {
         spaceMap.replace(spaceMap.length() - 3, spaceMap.length(), "");
-        return spaceMap.append(OutputFormatType.END_BRACKET.getOutputFormat()).toString();
     }
 
     /**
