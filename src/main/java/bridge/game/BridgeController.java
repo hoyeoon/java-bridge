@@ -1,6 +1,9 @@
 package bridge.game;
 
 import bridge.Result;
+import bridge.validation.BridgeSize;
+import bridge.validation.GameCommand;
+import bridge.validation.MovingSpace;
 import bridge.type.BridgeResultType;
 import bridge.type.CommandType;
 import bridge.type.GameResultType;
@@ -28,10 +31,6 @@ public class BridgeController {
         game(startCommand, bridge);
     }
 
-    private List<String> bridgeModule() {
-        OutputView.printBridgeSizeInputMessage();
-        return bridgeGame.generateBridge(InputView.readBridgeSize());
-    }
 
     private void game(String command, List<String> bridge) {
         List<Result> results;
@@ -47,20 +46,55 @@ public class BridgeController {
         } while(!isQuitCommand(command, results));
     }
 
+    private List<String> bridgeModule() {
+        int bridgeSize = getReadBridgeSize().getBridgeSize();
+        OutputView.printNewlineCharacter();
+        return bridgeGame.generateBridge(bridgeSize);
+    }
+
+    private BridgeSize getReadBridgeSize() {
+        try {
+            OutputView.printBridgeSizeInputMessage();
+            return InputView.readBridgeSize();
+        } catch(IllegalArgumentException e) {
+            OutputView.printError(e);
+            return getReadBridgeSize();
+        }
+    }
+
     private List<Result> moveModule(List<String> bridge) {
-        OutputView.printMovingSpaceInputMessage();
-        movedSpaces.add(InputView.readMoving());
+        String moveType = getReadMovingSpace().getMovingSpace();
+        movedSpaces.add(moveType);
         List<Result> results = bridgeGame.move(bridge, movedSpaces);
         OutputView.printMap(results);
         return results;
     }
 
+    private MovingSpace getReadMovingSpace() {
+        try {
+            OutputView.printMovingSpaceInputMessage();
+            return InputView.readMoving();
+        } catch(IllegalArgumentException e) {
+            OutputView.printError(e);
+            return getReadMovingSpace();
+        }
+    }
+
     private String retryModule() {
-        OutputView.printGameRetryInputMessage();
-        String command = InputView.readGameCommand();
+        String command = getReadGameCommand().getGameCommand();
         totalGameCount = bridgeGame.retry(command, totalGameCount);
         movedSpaces = initMovedSpaces();
         return command;
+    }
+
+    private GameCommand getReadGameCommand() {
+        try {
+            OutputView.printGameCommandInputMessage();
+            return InputView.readGameCommand();
+        } catch(IllegalArgumentException e) {
+            OutputView.printError(e);
+            return getReadGameCommand();
+        }
     }
 
     private List<String> initMovedSpaces() {
@@ -69,7 +103,6 @@ public class BridgeController {
 
     private boolean isQuitCommand(String command, List<Result> results) {
         if(CommandType.QUIT.getCommandType().equals(command)) {
-            System.out.println("Q 눌러서 종료");
             OutputView.printResult(GameResultType.FAILURE.getResult(), totalGameCount, results);
             return true;
         }
@@ -78,7 +111,6 @@ public class BridgeController {
 
     private boolean isFinish(List<String> bridge, List<Result> results) {
         if(bridge.size() == results.size()) {
-            System.out.println("끝까지 와서 종료");
             OutputView.printResult(GameResultType.SUCCESS.getResult(), totalGameCount, results);
             return true;
         }

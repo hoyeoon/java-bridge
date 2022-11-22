@@ -21,11 +21,14 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static String printMap(List<Result> results) {
+    public static void printMap(List<Result> results) {
+        System.out.println(makeTotalSpaceMap(results));
+    }
+
+    public static String makeTotalSpaceMap(List<Result> results) {
         StringBuilder map = new StringBuilder();
         map.append(makeSpaceMap(UP.getMove(), results)).append(NEWLINE_CHARACTER);
         map.append(makeSpaceMap(DOWN.getMove(), results)).append(NEWLINE_CHARACTER);
-        System.out.println(map);
 
         return map.toString();
     }
@@ -65,7 +68,7 @@ public class OutputView {
     public static void printResult(String gameResultType, int totalGameCount, List<Result> results) {
         StringBuilder result = new StringBuilder();
         result.append(MessageType.GAME_END.getMessage()).append(NEWLINE_CHARACTER);
-        result.append(printMap(results)).append(NEWLINE_CHARACTER);
+        result.append(makeTotalSpaceMap(results)).append(NEWLINE_CHARACTER);
         result.append(MessageType.GAME_SUCCESS_OR_NOT.getMessage()).append(gameResultType).append(NEWLINE_CHARACTER);
         result.append(MessageType.TOTAL_TRY_COUNT.getMessage()).append(totalGameCount);
 
@@ -84,8 +87,15 @@ public class OutputView {
         System.out.println(MessageType.MOVE_SPACE_INPUT.getMessage());
     }
 
-    public static void printGameRetryInputMessage() {
+    public static void printGameCommandInputMessage() {
         System.out.println(MessageType.GAME_COMMAND_INPUT.getMessage());
     }
 
+    public static void printError(RuntimeException e) {
+        System.err.println(e.getMessage());
+    }
+
+    public static void printNewlineCharacter() {
+        System.out.println();
+    }
 }

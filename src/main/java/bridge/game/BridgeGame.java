@@ -50,7 +50,7 @@ public class BridgeGame {
         return totalGameCount;
     }
 
-    public List<String> generateBridge(int readBridgeSize) {
-        return bridgeMaker.makeBridge(readBridgeSize);
+    public List<String> generateBridge(int bridgeSize) {
+        return bridgeMaker.makeBridge(bridgeSize);
     }
 }

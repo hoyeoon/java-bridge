@@ -9,7 +9,9 @@
 - [x] 게임 결과를 보여준다. - OutputView#printResult
 - [x] 사용자가 칸을 이동할 때 사용하는 메서드를 구현한다. - BridgeGame#move
 - [x] 사용자가 게임을 다시 시도할 때 사용하는 메서드를 구현한다. - BridgeGame#retry
-- [x] 전체 프로그램이 동작되도록 구현한다. - Application#main
+- [x] 사용자에게 보여주는 전체 프로그램이 정상 동작되도록 구현한다. - BridgeController
 ### 예외 처리
-- []
-- []
+- [x] 잘못된 입력입니다. - BridgeSize
+- [x] 다리 길이는 3부터 20 사이의 숫자여야 합니다. - BridgeSize
+- [x] 이동할 칸은 U 또는 D여야 합니다. - MovingSpace
+- [x] 게임 재시작/종료 여부는 R 또는 Q여야 합니다. - GameCommand
