@@ -4,7 +4,7 @@ public class Result {
     private final String result;
     private final String movedSpace;
 
-    Result(String result, String movedSpace) {
+    public Result(String result, String movedSpace) {
         this.result = result;
         this.movedSpace = movedSpace;
     }

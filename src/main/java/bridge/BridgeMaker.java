@@ -22,15 +22,15 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
-        List<String> bridgeShape = new ArrayList<>();
+        List<String> bridge = new ArrayList<>();
         for(int i = 0; i < size; i++) {
             int generatedNumber = bridgeNumberGenerator.generate();
             if(generatedNumber == 0) {
-                bridgeShape.add(DOWN.getMove());
+                bridge.add(DOWN.getMove());
                 continue;
             }
-            bridgeShape.add(UP.getMove());
+            bridge.add(UP.getMove());
         }
-        return bridgeShape;
+        return bridge;
     }
 }

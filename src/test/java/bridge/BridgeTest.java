@@ -1,5 +1,6 @@
 package bridge;
 
+import bridge.game.BridgeGame;
 import bridge.view.OutputView;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +15,14 @@ public class BridgeTest {
     public void 다리건너기_결과_테스트() {
 
         // given
-        List<String> bridgeShape = Arrays.asList("U", "D", "D");
+        List<String> bridges = Arrays.asList("U", "D", "D");
 
         // when
         List<String> movedSpaces = Arrays.asList("U", "U", "U");
 
         // then
-        BridgeGame bridgeGame = new BridgeGame();
-        List<Result> results = bridgeGame.move(bridgeShape, movedSpaces);
+        BridgeGame bridgeGame = new BridgeGame(null);
+        List<Result> results = bridgeGame.move(bridges, movedSpaces);
         assertThat(results.size()).isEqualTo(2);
         assertThat(results.get(1).getResult()).isEqualTo("X");
 

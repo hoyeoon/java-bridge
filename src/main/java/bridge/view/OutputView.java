@@ -21,7 +21,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public String printMap(List<Result> results) {
+    public static String printMap(List<Result> results) {
         StringBuilder map = new StringBuilder();
         map.append(makeSpaceMap(UP.getMove(), results)).append(NEWLINE_CHARACTER);
         map.append(makeSpaceMap(DOWN.getMove(), results)).append(NEWLINE_CHARACTER);
@@ -30,7 +30,7 @@ public class OutputView {
         return map.toString();
     }
 
-    private String makeSpaceMap(String moveType, List<Result> results) {
+    private static String makeSpaceMap(String moveType, List<Result> results) {
         StringBuilder spaceMap = new StringBuilder();
         spaceMap.append(OutputFormatType.START_BRACKET.getOutputFormat());
 
@@ -43,7 +43,7 @@ public class OutputView {
         return spaceMap.toString();
     }
 
-    private void makeSpace(String moveType, StringBuilder spaceMap, Result result) {
+    private static void makeSpace(String moveType, StringBuilder spaceMap, Result result) {
         if(!moveType.equals(result.getMovedSpace())) {
             spaceMap.append(OutputFormatType.SPACE.getOutputFormat());
             spaceMap.append(OutputFormatType.SEPARATOR.getOutputFormat());
@@ -53,7 +53,7 @@ public class OutputView {
         spaceMap.append(OutputFormatType.SEPARATOR.getOutputFormat());
     }
 
-    private void removeLastSeparator(StringBuilder spaceMap) {
+    private static void removeLastSeparator(StringBuilder spaceMap) {
         spaceMap.replace(spaceMap.length() - 3, spaceMap.length(), "");
     }
 
@@ -62,7 +62,7 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public void printResult(String gameResultType, int totalGameCount, List<Result> results) {
+    public static void printResult(String gameResultType, int totalGameCount, List<Result> results) {
         StringBuilder result = new StringBuilder();
         result.append(MessageType.GAME_END.getMessage()).append(NEWLINE_CHARACTER);
         result.append(printMap(results)).append(NEWLINE_CHARACTER);
@@ -72,20 +72,19 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public void printGameStartMessage() {
+    public static void printGameStartMessage() {
         System.out.println(MessageType.GAME_START.getMessage() + NEWLINE_CHARACTER);
-        printBridgeSizeInputMessage();
     }
 
-    private void printBridgeSizeInputMessage() {
+    public static void printBridgeSizeInputMessage() {
         System.out.println(MessageType.BRIDGE_LENGTH_INPUT.getMessage());
     }
 
-    public void printMovingSpaceInputMessage() {
+    public static void printMovingSpaceInputMessage() {
         System.out.println(MessageType.MOVE_SPACE_INPUT.getMessage());
     }
 
-    public void printGameRetryInputMessage() {
+    public static void printGameRetryInputMessage() {
         System.out.println(MessageType.GAME_COMMAND_INPUT.getMessage());
     }
 
