@@ -52,16 +52,15 @@ public class BridgeController {
         movedSpaces.add(InputView.readMoving());
         List<Result> results = bridgeGame.move(bridge, movedSpaces);
         OutputView.printMap(results);
-
         return results;
     }
 
     private String retryModule() {
         OutputView.printGameRetryInputMessage();
-        totalGameCount = bridgeGame.retry(totalGameCount);
+        String command = InputView.readGameCommand();
+        totalGameCount = bridgeGame.retry(command, totalGameCount);
         movedSpaces = initMovedSpaces();
-
-        return InputView.readGameCommand();
+        return command;
     }
 
     private List<String> initMovedSpaces() {
